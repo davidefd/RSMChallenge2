@@ -18,6 +18,7 @@
         }
 
         public virtual DbSet<Department> Departments { get; set; }
+        public virtual DbSet<ProductCategory> ProductCategorys { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
