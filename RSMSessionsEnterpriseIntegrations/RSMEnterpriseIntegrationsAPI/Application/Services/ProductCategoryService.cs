@@ -50,8 +50,8 @@ namespace RSMEnterpriseIntegrationsAPI.Application.Services
             {
                 GetProductCategoryDto dto = new()
                 {
-                    Name = productCategory.Name,
-                    ProductCategoryId = productCategory.ProductCategoryId
+                    ProductCategoryId = productCategory.ProductCategoryId,
+                    Name = productCategory.Name
                 };
 
                 productCategoriesDto.Add(dto);
