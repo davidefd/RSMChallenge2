@@ -30,6 +30,9 @@ builder.Services.AddTransient<IProductCategoryService, ProductCategoryService>()
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<IProductService, ProductService>();
 
+builder.Services.AddTransient<ISalesOrderHeaderRepository, SalesOrderHeaderRepository>();
+builder.Services.AddTransient<ISalesOrderHeaderService, SalesOrderHeaderService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -39,6 +42,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<BasicAuthHandler>("Test");
 app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
