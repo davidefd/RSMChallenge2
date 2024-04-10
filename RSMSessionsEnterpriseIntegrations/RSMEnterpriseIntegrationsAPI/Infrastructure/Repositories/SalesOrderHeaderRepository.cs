@@ -32,12 +32,12 @@ namespace RSMEnterpriseIntegrationsAPI.Infrastructure.Repositories
 
         public async Task<IEnumerable<SalesOrderHeader>> GetAllSalesOrderHeaders(int pageNumber)
         {
-            var pageSize = 300f;
+            var pageSize = 1000f;
             var pageCount = Math.Ceiling(_context.SalesOrderHeaders.Count() / pageSize);
 
             return await _context.Set<SalesOrderHeader>()
                 .OrderBy(s => s.SalesOrderId)
-                .Skip((pageNumber - 1) * (int) pageSize)
+                .Skip((pageNumber - 1) * (int)pageSize)
                 .Take((int)pageSize)
                 .ToListAsync();
         }
@@ -46,14 +46,31 @@ namespace RSMEnterpriseIntegrationsAPI.Infrastructure.Repositories
         {
             return await _context.SalesOrderHeaders
                 .AsNoTracking()
-                .FirstOrDefaultAsync(d=>d.SalesOrderId == id);
+                .FirstOrDefaultAsync(d => d.SalesOrderId == id);
         }
 
         public async Task<int> UpdateSalesOrderHeader(SalesOrderHeader salesOrderHeader)
         {
-            _context.Update(salesOrderHeader);
+            using (var transaction = await _context.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    await _context.Database.ExecuteSqlRawAsync("DISABLE TRIGGER ALL ON Sales.SalesOrderHeader");
+                    _context.Update(salesOrderHeader);
+                    int affectedRows = await _context.SaveChangesAsync();
 
-            return await _context.SaveChangesAsync();
+                    await _context.Database.ExecuteSqlRawAsync("ENABLE TRIGGER ALL ON Sales.SalesOrderHeader");
+                    await transaction.CommitAsync();
+
+                    return affectedRows;
+                }
+                catch (Exception)
+                {
+                    await transaction.RollbackAsync();
+                    throw;
+                }
+            }
         }
+
     }
 }

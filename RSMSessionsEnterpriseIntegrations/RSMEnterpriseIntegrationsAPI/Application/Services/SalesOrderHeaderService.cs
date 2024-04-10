@@ -22,24 +22,24 @@ namespace RSMEnterpriseIntegrationsAPI.Application.Services
 
             SalesOrderHeader soh = new()
             {
-                    RevisionNumber = salesOrderHeaderDto.RevisionNumber,
-                    Status = salesOrderHeaderDto.Status,
-                    OnlineOrderFlag = salesOrderHeaderDto.OnlineOrderFlag,
-                    PurchaseOrderNumber = salesOrderHeaderDto.PurchaseOrderNumber,
-                    AccountNumber = salesOrderHeaderDto.AccountNumber,
-                    CustomerId = salesOrderHeaderDto.CustomerId,
-                    SalesPersonId = salesOrderHeaderDto.SalesPersonId,
-                    TerritoryId = salesOrderHeaderDto.TerritoryId,
-                    BillToAddressId = salesOrderHeaderDto.BillToAddressId,
-                    ShipToAddressId = salesOrderHeaderDto.ShipToAddressId,
-                    ShipMethodId = salesOrderHeaderDto.ShipMethodId,
-                    CreditCardId = salesOrderHeaderDto.CreditCardId,
-                    CreditCardApprovalCode = salesOrderHeaderDto.CreditCardApprovalCode,
-                    CurrencyRateId = salesOrderHeaderDto.CurrencyRateId,
-                    SubTotal = salesOrderHeaderDto.SubTotal,
-                    TaxAmt = salesOrderHeaderDto.TaxAmt,
-                    Freight = salesOrderHeaderDto.Freight,
-                    Comment = salesOrderHeaderDto.Comment
+                RevisionNumber = salesOrderHeaderDto.RevisionNumber,
+                Status = salesOrderHeaderDto.Status,
+                OnlineOrderFlag = salesOrderHeaderDto.OnlineOrderFlag,
+                PurchaseOrderNumber = salesOrderHeaderDto.PurchaseOrderNumber,
+                AccountNumber = salesOrderHeaderDto.AccountNumber,
+                CustomerId = salesOrderHeaderDto.CustomerId,
+                SalesPersonId = salesOrderHeaderDto.SalesPersonId,
+                TerritoryId = salesOrderHeaderDto.TerritoryId,
+                BillToAddressId = salesOrderHeaderDto.BillToAddressId,
+                ShipToAddressId = salesOrderHeaderDto.ShipToAddressId,
+                ShipMethodId = salesOrderHeaderDto.ShipMethodId,
+                CreditCardId = salesOrderHeaderDto.CreditCardId,
+                CreditCardApprovalCode = salesOrderHeaderDto.CreditCardApprovalCode,
+                CurrencyRateId = salesOrderHeaderDto.CurrencyRateId,
+                SubTotal = salesOrderHeaderDto.SubTotal,
+                TaxAmt = salesOrderHeaderDto.TaxAmt,
+                Freight = salesOrderHeaderDto.Freight,
+                Comment = salesOrderHeaderDto.Comment
             };
 
             return await _salesOrderHeaderRepository.CreateSalesOrderHeader(soh);
@@ -132,29 +132,31 @@ namespace RSMEnterpriseIntegrationsAPI.Application.Services
             return dto;
         }
 
+        //Implementing new method
         public async Task<int> UpdateSalesOrderHeader(UpdateSalesOrderHeaderDto salesOrderHeaderDto)
         {
-            if(salesOrderHeaderDto is null)
+            if (salesOrderHeaderDto is null)
             {
                 throw new BadRequestException("ProductCategory info is not valid.");
             }
 
             var soh = await ValidateSalesOrderHeaderExistence(salesOrderHeaderDto.SalesOrderId);
 
-            //soh.RevisionNumber = salesOrderHeaderDto.RevisionNumber.Equals(null) ? soh.RevisionNumber : salesOrderHeaderDto.RevisionNumber;
-            
-            //soh.Status = salesOrderHeaderDto.Status.Equals(null) ? soh.Status : salesOrderHeaderDto.Status;
-            
+            soh.RevisionNumber = salesOrderHeaderDto.RevisionNumber.Equals(null) ? soh.RevisionNumber : salesOrderHeaderDto.RevisionNumber;
+            soh.Status = salesOrderHeaderDto.Status.Equals(null) ? soh.Status : salesOrderHeaderDto.Status;
             soh.OnlineOrderFlag = salesOrderHeaderDto.OnlineOrderFlag.Equals(null) ? soh.OnlineOrderFlag : salesOrderHeaderDto.OnlineOrderFlag;
-            /*
-            soh.PurchaseOrderNumber = string.IsNullOrWhiteSpace(salesOrderHeaderDto.PurchaseOrderNumber) ? soh.PurchaseOrderNumber : salesOrderHeaderDto.PurchaseOrderNumber;
             soh.AccountNumber = string.IsNullOrWhiteSpace(salesOrderHeaderDto.AccountNumber) ? soh.AccountNumber : salesOrderHeaderDto.AccountNumber;
+            soh.SalesPersonId = salesOrderHeaderDto.SalesPersonId.Equals(null) ? soh.SalesPersonId : salesOrderHeaderDto.SalesPersonId;
+            soh.TerritoryId = salesOrderHeaderDto.TerritoryId.Equals(null) ? soh.TerritoryId : salesOrderHeaderDto.TerritoryId;
+            soh.CreditCardId = salesOrderHeaderDto.CreditCardId.Equals(null) ? soh.CreditCardId : salesOrderHeaderDto.CreditCardId;
             soh.CreditCardApprovalCode = string.IsNullOrWhiteSpace(salesOrderHeaderDto.CreditCardApprovalCode) ? soh.CreditCardApprovalCode : salesOrderHeaderDto.CreditCardApprovalCode;
+            soh.CurrencyRateId = salesOrderHeaderDto.CurrencyRateId.Equals(null) ? soh.CurrencyRateId : salesOrderHeaderDto.CurrencyRateId;
             soh.SubTotal = salesOrderHeaderDto.SubTotal.Equals(null) ? soh.SubTotal : salesOrderHeaderDto.SubTotal;
             soh.TaxAmt = salesOrderHeaderDto.TaxAmt.Equals(null) ? soh.TaxAmt : salesOrderHeaderDto.TaxAmt;
             soh.Freight = salesOrderHeaderDto.Freight.Equals(null) ? soh.Freight : salesOrderHeaderDto.Freight;
             soh.Comment = string.IsNullOrWhiteSpace(salesOrderHeaderDto.Comment) ? soh.Comment : salesOrderHeaderDto.Comment;
-            */
+            soh.PurchaseOrderNumber = string.IsNullOrWhiteSpace(salesOrderHeaderDto.PurchaseOrderNumber) ? soh.PurchaseOrderNumber : salesOrderHeaderDto.PurchaseOrderNumber;
+
             return await _salesOrderHeaderRepository.UpdateSalesOrderHeader(soh);
         }
 

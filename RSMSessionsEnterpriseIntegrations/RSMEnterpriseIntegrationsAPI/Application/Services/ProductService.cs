@@ -142,22 +142,22 @@ namespace RSMEnterpriseIntegrationsAPI.Application.Services
             product.Name = string.IsNullOrWhiteSpace(productDto.Name) ? product.Name : productDto.Name;
             product.ProductNumber = string.IsNullOrWhiteSpace(productDto.ProductNumber) ? product.ProductNumber : productDto.ProductNumber;
             product.MakeFlag = productDto.MakeFlag.Equals(null) ? product.MakeFlag : productDto.MakeFlag;
-            product.FinishedGoodsFlag = productDto.FinishedGoodsFlag.Equals("") ? product.FinishedGoodsFlag : productDto.FinishedGoodsFlag;
+            product.FinishedGoodsFlag = productDto.FinishedGoodsFlag.Equals(null) ? product.FinishedGoodsFlag : productDto.FinishedGoodsFlag;
             product.Color = string.IsNullOrWhiteSpace(productDto.Color) ? product.Color : productDto.Color;
-            product.SafetyStockLevel = productDto.SafetyStockLevel.Equals("") ? product.SafetyStockLevel : productDto.SafetyStockLevel;
-            product.ReorderPoint = productDto.ReorderPoint.Equals("") ? product.ReorderPoint : productDto.ReorderPoint;
-            product.StandardCost = productDto.StandardCost.Equals("") ? product.StandardCost : productDto.StandardCost;
-            product.ListPrice = productDto.ListPrice.Equals("") ? product.ListPrice : productDto.ListPrice;
+            product.SafetyStockLevel = productDto.SafetyStockLevel.Equals(null) ? product.SafetyStockLevel : productDto.SafetyStockLevel;
+            product.ReorderPoint = productDto.ReorderPoint.Equals(null) ? product.ReorderPoint : productDto.ReorderPoint;
+            product.StandardCost = productDto.StandardCost.Equals(null) ? product.StandardCost : productDto.StandardCost;
+            product.ListPrice = productDto.ListPrice.Equals(null) ? product.ListPrice : productDto.ListPrice;
             product.Size = string.IsNullOrWhiteSpace(productDto.Size) ? product.Size : productDto.Size;
             product.SizeUnitMeasureCode = string.IsNullOrWhiteSpace(productDto.SizeUnitMeasureCode) ? product.SizeUnitMeasureCode : productDto.SizeUnitMeasureCode;
             product.WeightUnitMeasureCode = string.IsNullOrWhiteSpace(productDto.WeightUnitMeasureCode) ? product.WeightUnitMeasureCode : productDto.WeightUnitMeasureCode;
-            product.Weight = productDto.Weight.Equals("") ? product.Weight : productDto.Weight;
-            product.DaysToManufacture = productDto.DaysToManufacture.Equals("") ? product.DaysToManufacture : productDto.DaysToManufacture;
+            product.Weight = productDto.Weight.Equals(null) ? product.Weight : productDto.Weight;
+            product.DaysToManufacture = productDto.DaysToManufacture.Equals(null) ? product.DaysToManufacture : productDto.DaysToManufacture;
             product.ProductLine = string.IsNullOrWhiteSpace(productDto.ProductLine) ? product.ProductLine : productDto.ProductLine;
             product.Class = string.IsNullOrWhiteSpace(productDto.Class) ? product.Class : productDto.Class;
             product.Style = string.IsNullOrWhiteSpace(productDto.Style) ? product.Style : productDto.Style;
-            product.ProductSubcategoryId = productDto.ProductSubcategoryId.Equals("") ? product.ProductSubcategoryId : productDto.ProductSubcategoryId;
-            product.ProductModelId = productDto.ProductModelId.Equals("") ? product.ProductModelId : productDto.ProductModelId;
+            product.ProductSubcategoryId = productDto.ProductSubcategoryId.Equals(null) ? product.ProductSubcategoryId : productDto.ProductSubcategoryId;
+            product.ProductModelId = productDto.ProductModelId.Equals(null) ? product.ProductModelId : productDto.ProductModelId;
 
             return await _productRepository.UpdateProduct(product);
         }

@@ -8,7 +8,7 @@ namespace RSMEnterpriseIntegrationsAPI.Domain.Interfaces
         Task<GetSalesOrderHeaderDto?> GetSalesOrderHeaderById(int id);
         Task<IEnumerable<GetSalesOrderHeaderDto>> GetAll(int page);
         Task<int> CreateSalesOrderHeader(CreateSalesOrderHeaderDto salesOrderHeaderDto);
-        Task<int> UpdateSalesOrderHeader(UpdateSalesOrderHeaderDto salesOrderHeaderDto);
+        Task<int> UpdateSalesOrderHeader(UpdateSalesOrderHeaderDto salesOrderHeaderDto); //Testing new method
         Task<int> DeleteSalesOrderHeader(int id);
     }
 }

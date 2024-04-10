@@ -15,8 +15,8 @@ namespace RSMEnterpriseIntegrationsAPI.Infrastructure.Configurations
             builder.Property(e => e.ProductId).HasColumnName("ProductID");
             builder.Property(e => e.Name).IsRequired();
             builder.Property(e => e.ProductNumber).IsRequired();
-            builder.Property(e => e.MakeFlag);
-            builder.Property(e => e.FinishedGoodsFlag);
+            builder.Property(e => e.MakeFlag).IsRequired();
+            builder.Property(e => e.FinishedGoodsFlag).IsRequired();
             builder.Property(e => e.Color);
             builder.Property(e => e.SafetyStockLevel).IsRequired();
             builder.Property(e => e.ReorderPoint).IsRequired();
@@ -34,8 +34,6 @@ namespace RSMEnterpriseIntegrationsAPI.Infrastructure.Configurations
             builder.Property(e => e.ProductSubcategoryId).HasColumnName("ProductSubcategoryID");
             builder.Property(e => e.ProductModelId);
             builder.Property(e => e.ProductModelId).HasColumnName("ProductModelID");
-            //builder.Property(e => e.Rowguid);
-            //builder.Property(e => e.Rowguid).HasColumnName("rowguid");
         }
     }
 }
